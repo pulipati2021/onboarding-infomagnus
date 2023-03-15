@@ -1,0 +1,21 @@
+name: Create new repository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+      - name: Create repository
+        env:
+          ROLE: ${{ secrets.ROLE }}
+        run: python create_repository.py
