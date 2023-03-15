@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: pip install gspread github google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+        run: pip install --upgrade pip gspread github google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
       - name: Create repository
         env:
           ROLE: ${{ secrets.ROLE }}
