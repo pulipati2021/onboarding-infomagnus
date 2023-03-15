@@ -18,7 +18,7 @@ role = sheet.cell(row, 2).value
 
 # Get the template repository based on the role
 if role == 'developer':
-    template_repo = g.get_repo('owner/developer-template')
+    template_repo = g.get_repo('docs')
 elif role == 'designer':
     template_repo = g.get_repo('owner/designer-template')
 # add more conditionals for each role
