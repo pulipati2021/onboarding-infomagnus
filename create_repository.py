@@ -4,7 +4,7 @@ import gspread
 
 # Authenticate with Google Sheets API
 creds = Credentials.from_service_account_file('google-creds.json')
-client = gspread.authorize(creds)
+client = gspread.oauth(creds)
 sheet = client.open('responses').sheet1
 
 # Authenticate with GitHub API
