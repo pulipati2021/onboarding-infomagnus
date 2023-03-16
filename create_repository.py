@@ -2,19 +2,8 @@ from google.oauth2.service_account import Credentials
 from github import Github
 import gspread
 
-# Authenticate with Google Sheets API
-creds = Credentials.from_service_account_file('google-creds.json')
-client = gspread.authorize(creds)
-sheet = client.open('responses').sheet1
-
 # Authenticate with GitHub API
 g = Github('access_token')
-
-# Get the last row of the sheet
-row = len(sheet.get_all_values())
-
-# Get the role from the form
-role = sheet.cell(row, 2).value
 
 # Get the template repository based on the role
 if role == 'developer':
