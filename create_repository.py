@@ -1,10 +1,9 @@
-from google.oauth2 import service_account
+from google.oauth2.service_account import Credentials
 from github import Github
 import gspread
-from googleapiclient.discovery import build
 
 # Authenticate with Google Sheets API
-creds = service_account.from_service_account_file('google-creds.json')
+creds = Credentials.from_service_account_file('google-creds.json')
 client = gspread.oauth(creds)
 sheet = client.open('responses').sheet1
 
