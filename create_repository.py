@@ -4,7 +4,7 @@ import gspread
 
 # Authenticate with GitHub API
 g = Github('access_token')
-
+role = developer
 # Get the template repository based on the role
 if role == 'developer':
     template_repo = g.get_repo('docs')
