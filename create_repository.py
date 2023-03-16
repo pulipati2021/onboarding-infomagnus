@@ -3,7 +3,7 @@ from github import Github
 import gspread
 
 # Authenticate with GitHub API
-g = Github('access_token')
+g = Github('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')
 role = 'developer'
 # Get the template repository based on the role
 if role == 'developer':
