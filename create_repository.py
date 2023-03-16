@@ -1,42 +1,41 @@
-from google.oauth2.service_account import Credentials
-from github import Github
-import gspread
+from __future__ import print_function
 
-# Authenticate with Google Sheets API
-creds = Credentials.from_service_account_file('google-creds.json')
-client = gspread.authorize(creds)
-sheet = client.open('responses').sheet1
+import os.path
 
-# Authenticate with GitHub API
-g = Github('access_token')
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from google.oauth2 import service_account
 
-# Get the last row of the sheet
-row = len(sheet.get_all_values())
+ 
+SERVICE_ACCOUNT_FILE = 'keys.json'
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+creds = None
+credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES) 
 
-# Get the role from the form
-role = sheet.cell(row, 2).value
+# If modifying these scopes, delete the file token.json.
 
-# Get the template repository based on the role
-if role == 'developer':
-    template_repo = g.get_repo('docs')
-elif role == 'designer':
-    template_repo = g.get_repo('owner/designer-template')
-# add more conditionals for each role
 
-# Create the new repository
-new_repo = g.get_user().create_repo('new-repo', private=True)
+# The ID and range of a sample spreadsheet.
+SAMPLE_SPREADSHEET_ID = '1q6rW7kFGXxivDI2YCO39g308cMfykNOiqOqhx7r4q48'
+ 
 
-# Clone the template repository
-template_contents = template_repo.get_contents('')
-for content_file in template_contents:
-    content = template_repo.get_contents(content_file.path).decoded_content
-    new_repo.create_file(content_file.path, 'initial commit', content)
 
-# Assign issues based on the role
-if role == 'developer':
-    issue = new_repo.create_issue(title='Developer issue', body='Assign to a developer')
-    issue.add_to_labels('developer')
-elif role == 'designer':
-    issue = new_repo.create_issue(title='Designer issue', body='Assign to a designer')
-    issue.add_to_labels('designer')
-# add more conditionals for each role
+
+
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+ 
+
+ 
+service = build('sheets', 'v4', credentials=creds)
+
+        # Call the Sheets API
+sheet = service.spreadsheets()
+result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                    range="sales!A1:C2").execute()
+print(result)
