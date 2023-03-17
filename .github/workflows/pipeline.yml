@@ -17,7 +17,7 @@ jobs:
     - name: Create repository for new user
       uses: actions/github-script@v4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
           const repoName = 'onboarding-offboarding-' + new Date().getTime()
           const response = await github.repos.createForAuthenticatedUser({ name: repoName })
