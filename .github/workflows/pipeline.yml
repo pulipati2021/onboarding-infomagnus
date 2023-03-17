@@ -27,7 +27,7 @@ jobs:
     - name: Assign issues to new repository
       uses: actions/github-script@v3
       with:
-        github-token: ${{ secrets.GITHUBB_TOKEN }}
+        token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
           const octokit = new github.GitHub(token);
           const repository = core.getInput("repository123");
