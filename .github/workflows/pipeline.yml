@@ -19,19 +19,45 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
-          const repoName = 'onboarding-offboarding-' + new Date().getTime()
+          const repoName = 'repository'
           const response = await github.repos.createForAuthenticatedUser({ name: repoName })
           console.log(response.data.html_url)
           core.setOutput('repo_url', response.data.html_url)
 
     - name: Assign issues to new repository
-      uses: peter-evans/repository-dispatch@v1
+      uses: actions/github-script@v3
       with:
-        token: ${{ secrets.GITHUBB_TOKEN }}
-        repository: onboarding-offboarding-1679042409761
-        event-type: "assign-issues"
-        client-payload: |
-            {
-              "docsPath": "docs",
-              "assignees": ["suryaraghava80"]
+          script: |
+            const octokit = new github.GitHub(token);
+            const repository = core.getInput("repository");
+            const docsPath = "docs";
+            const assignees = [github.event.issue.user.login];
+            const issuesResponse = await octokit.issues.listForRepo({
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              state: "open"
+            });
+            for (const issue of issuesResponse.data) {
+              const fileResponse = await octokit.repos.getContent({
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                path: docsPath
+              });
+              const issueLabels = issue.labels.map(label => label.name);
+              if (fileResponse.data.type === "file" && issueLabels.includes("needs-assignment")) {
+                await octokit.issues.update({
+                  owner: github.context.repo.owner,
+                  repo: repository,
+                  issue_number: issue.number,
+                  assignees
+                });
+                await octokit.issues.removeLabel({
+                  owner: github.context.repo.owner,
+                  repo: github.context.repo.repo,
+                  issue_number: issue.number,
+                  name: "needs-assignment"
+                });
+              }
             }
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
