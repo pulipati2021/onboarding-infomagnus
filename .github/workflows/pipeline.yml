@@ -24,45 +24,14 @@ jobs:
           console.log(response.data.html_url)
           core.setOutput('repo_url', response.data.html_url)
 
-    - name: Set up repository
-      uses: actions/setup-node@v2
+    - name: Assign issues to new repository
+      uses: peter-evans/repository-dispatch@v1
       with:
-          node-version: '14.x'
-    - name: Install dependencies
-      run: |
-        npm install @octokit/rest
-
-    - name: Assign issues based on documentation
-      uses: actions/github-script@v3
-      env:
-        USERNAME: ${{ github.event.inputs.username }}
-      with:
-        github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        script: |
-          const octokit = require('@octokit/rest')();
-          octokit.authenticate({
-            type: 'token',
-            token: process.env.GITHUB_TOKEN
-          });
-          const { data: issues } = await octokit.issues.listForRepo({
-            owner: process.env.GITHUB_REPOSITORY.split('/')[0],
-            repo: process.env.GITHUB_REPOSITORY.split('/')[1]
-          });
-          const { data: documentation } = await octokit.repos.getContents({
-            owner: process.env.GITHUB_REPOSITORY.split('/')[0],
-            repo: process.env.GITHUB_REPOSITORY.split('/')[1],
-            path: 'docs'
-          });
-          const assignees = [process.env.USERNAME];
-          issues.forEach(issue => {
-            documentation.forEach(file => {
-              if (issue.title.toLowerCase().includes(file.name.toLowerCase())) {
-                octokit.issues.addAssignees({
-                  owner: process.env.GITHUB_REPOSITORY.split('/')[0],
-                  repo: process.env.GITHUB_REPOSITORY.split('/')[1],
-                  issue_number: issue.number,
-                  assignees
-                });
-              }
-            });
-          });
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: onboarding-offboarding-*
+        event-type: "assign-issues"
+        client-payload: |
+            {
+              "docsPath": "docs",
+              "assignees": ["suryaraghava80"]
+            }
