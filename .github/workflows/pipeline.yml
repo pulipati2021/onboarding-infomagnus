@@ -27,7 +27,7 @@ jobs:
     - name: Assign issues to new repository
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUBB_TOKEN }}
         repository: onboarding-offboarding-1679042409761
         event-type: "assign-issues"
         client-payload: |
