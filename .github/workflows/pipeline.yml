@@ -15,12 +15,14 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Create repository for new user
-      uses: actions/create-repo@v1
-      with:
-        name: ${{ github.event.inputs.username }}-repo
-        description: 'Repository for new user'
-        private: true
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUBB_TOKEN }}
+          script: |
+            const repoName = 'onboarding-offboarding-' + new Date().getTime()
+            const response = await github.repos.createForAuthenticatedUser({ name: repoName })
+            console.log(response.data.html_url)
+            core.setOutput('repo_url', response.data.html_url)
 
     - name: Assign issues based on documentation
       uses: actions/github-script@v3
