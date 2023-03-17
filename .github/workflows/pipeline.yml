@@ -16,7 +16,7 @@ jobs:
           script: |
             const response = await github.repos.createForAuthenticatedUser({
               name: 'new-repo',
-              private: true
+              private: false
             });
             console.log(`Created new repository ${response.data.html_url}`);
           # Replace PERSONAL_ACCESS_TOKEN with the actual personal access token with appropriate permissions
