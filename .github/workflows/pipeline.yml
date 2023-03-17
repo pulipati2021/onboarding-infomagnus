@@ -27,9 +27,9 @@ jobs:
     - name: Assign issues to new repository
       uses: actions/github-script@v3
       with:
-        token: ${{ secrets.GITHUBB_TOKEN }}
+        github-token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
-          const octokit = new github.GitHub(token);
+          const octokit = new github.GitHub(github-token);
           const repository = core.getInput("repository1233");
           const docsPath = "docs";
           const assignees = [github.event.issue.user.login];
