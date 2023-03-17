@@ -28,7 +28,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        repository: onboarding-offboarding-*
+        repository: onboarding-offboarding-1679042409761
         event-type: "assign-issues"
         client-payload: |
             {
