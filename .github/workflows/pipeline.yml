@@ -1,59 +1,51 @@
-name: New User Onboarding Workflow
-
+name: Create New Repository and Assign Issues Workflow
 on:
-  issues:
-    types: [opened]
-    # Trigger the workflow only when the issue is opened on the main repository
-    # Replace OWNER and MAIN-REPO with the actual owner and repository name
-    repo: im-sandbox-suryaraghava80/onboarding-infomagnus
-
+  push:
+    # Run the workflow only when a new branch is created
+    branches:
+      - 'main'
 jobs:
-  assign-issues:
+  create-repo-and-assign-issues:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Main Repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          # Checkout the main repository to access the docs
-          repository: im-sandbox-suryaraghava80/onboarding-infomagnus
-          # Fetch the entire history of the repository
-          fetch-depth: 0
       - name: Create New Repository
         uses: actions/github-script@v4
         with:
-          name: ${{ github.event.issue.user.login }}-repo
-          # Set the visibility of the new repository to private
-          private: true
-      - name: Add Collaborator
-        uses: peter-evans/repository-dispatch@v1
+          script: |
+            const response = await github.repos.createForAuthenticatedUser({
+              name: 'new-repo',
+              private: true
+            });
+            console.log(`Created new repository ${response.data.html_url}`);
+          # Replace PERSONAL_ACCESS_TOKEN with the actual personal access token with appropriate permissions
+        id: create_repo
+      - name: Clone Main Repository
+        uses: actions/checkout@v2
         with:
-          # Invite the user to the new repository as a collaborator
-          repository: ${{ github.event.issue.user.login }}-repo
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          event-type: add-collaborator
-          client-payload: '{"username": "${{ github.event.issue.user.login }}" }'
-      - name: Assign Issues
+          repository: im-sandbox-suryaraghava80/onboarding-infomagnus
+          ref: main
+          path: main-repo
+      - name: Assign Issues to New Repository
         uses: actions/github-script@v4
         with:
-          # Assign issues to the user based on their skills
-          # Replace 'docs' with the appropriate label used on issues
           script: |
-            const issues = await github.issues.listForRepo({
-              owner: 'im-sandbox-suryaraghava80',
-              repo: 'onboarding-infomagnus',
-              labels: 'docs',
-              state: 'open'
+            const octokit = require("@octokit/rest")();
+            const issues = await octokit.issues.listForRepo({
+              owner: "im-sandbox-suryaraghava80",
+              repo: "onboarding-infomagnus"
             });
             const issueNumbers = issues.data.map(issue => issue.number);
-            const assignee = '${{ github.event.issue.user.login }}';
-            await Promise.all(issueNumbers.map(async issueNumber => {
-              await github.issues.addAssignees({
-                owner: 'im-sandbox-suryaraghava80',
-                repo: '${{ github.event.issue.user.login }}-repo',
-                issue_number: issueNumber,
-                assignees: [assignee]
+            for (const issueNumber of issueNumbers) {
+              await octokit.issues.create({
+                owner: "im-sandbox-suryaraghava80",
+                repo: "new-repo",
+                title: issues.data.find(issue => issue.number === issueNumber).title,
+                body: issues.data.find(issue => issue.number === issueNumber).body
               });
-            }));
-          # Replace OWNER with the actual owner of the main and new repository
+              console.log(`Assigned issue #${issueNumber} to new repository.`);
+            }
           # Replace PERSONAL_ACCESS_TOKEN with the actual personal access token with appropriate permissions
-          # Replace MAIN-REPO with the actual name of the main repository
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
