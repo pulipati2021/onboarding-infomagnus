@@ -19,7 +19,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
-          const repoName = 'repository1233'
+          const repoName = 'repository12343'
           const response = await github.repos.createForAuthenticatedUser({ name: repoName })
           console.log(response.data.html_url)
           core.setOutput('repo_url', response.data.html_url)
@@ -30,7 +30,7 @@ jobs:
         github-token: ${{ secrets.GITHUBB_TOKEN }}
         script: |
           const octokit = new github.GitHub(github-token);
-          const repository = core.getInput("repository1233");
+          const repository = core.getInput("repository12343");
           const docsPath = "docs";
           const assignees = [github.event.issue.user.login];
           const issuesResponse = await octokit.issues.listForRepo({
