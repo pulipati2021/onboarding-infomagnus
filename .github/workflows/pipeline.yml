@@ -1,10 +1,11 @@
 name: New User Onboarding Workflow
 
 on:
-  workflow_dispatch:
+  issues:
+    types: [opened]
     # Trigger the workflow only when the issue is opened on the main repository
     # Replace OWNER and MAIN-REPO with the actual owner and repository name
-   # repo: im-sandbox-suryaraghava80/onboarding-infomagnus
+    repo: im-sandbox-suryaraghava80/onboarding-infomagnus
 
 jobs:
   assign-issues:
