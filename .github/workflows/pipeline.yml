@@ -19,7 +19,7 @@ jobs:
           # Fetch the entire history of the repository
           fetch-depth: 0
       - name: Create New Repository
-        uses: actions/create-repository@v1
+        uses: actions/github-script@v4
         with:
           name: ${{ github.event.issue.user.login }}-repo
           # Set the visibility of the new repository to private
