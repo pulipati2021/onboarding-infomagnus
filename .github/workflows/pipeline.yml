@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Create repository for new user
-      uses: actions/github-script@v4
+      uses: actions/create-repo@v1
       with:
         name: ${{ github.event.inputs.username }}-repo
         description: 'Repository for new user'
