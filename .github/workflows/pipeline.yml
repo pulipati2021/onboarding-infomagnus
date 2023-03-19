@@ -23,7 +23,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUBB_TOKEN }}
           script: |
-           const repoName = 'my-new-repo-${{ env.INPUT_NAME }}'
+           const repoName = 'my-new-repo-${{ github.event.inputs.message }}'
            const response = await github.repos.createForAuthenticatedUser({ name: repoName })
            console.log(response.data.html_url)
            core.setOutput('repo_url', response.data.html_url)
