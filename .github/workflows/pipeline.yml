@@ -1,64 +1,48 @@
-name: New User Onboarding
+name: Create New Repo with Issues
 
 on:
   workflow_dispatch:
     inputs:
-      username:
-        description: 'New user GitHub username'
-
+      message:
+        description: 'Enter a message to print'
+        required: true    
 jobs:
-  create_repo_and_assign_issues:
-    runs-on: ubuntu-latest
-
+  create_repo:
+    runs-on: ubuntu-latest  
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Create repository for new user
-      uses: actions/github-script@v4
-      with:
-        github-token: ${{ secrets.GITHUBB_TOKEN }}
-        script: |
-          const repoName = 'repository12343'
-          const response = await github.repos.createForAuthenticatedUser({ name: repoName })
-          console.log(response.data.html_url)
-          core.setOutput('repo_url', response.data.html_url)
+      - name: Checkout Code
+        uses: actions/checkout@v2     
 
-    - name: Assign issues to new repository
-      uses: actions/github-script@v3
-      with:
-        github-token: ${{ secrets.GITHUBB_TOKEN }}
-        script: |
-          const octokit = new github.GitHub(github-token);
-          const repository = core.getInput("repository12343");
-          const docsPath = "docs";
-          const assignees = [github.event.issue.user.login];
-          const issuesResponse = await octokit.issues.listForRepo({
-            owner: github.context.repo.owner,
-              repo: github.context.repo.repo,
-              state: "open"
-            });
-            for (const issue of issuesResponse.data) {
-              const fileResponse = await octokit.repos.getContent({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                path: docsPath
-              });
-            const issueLabels = issue.labels.map(label => label.name);
-            if (fileResponse.data.type === "file" && issueLabels.includes("needs-assignment")) {
-              await octokit.issues.update({
-                owner: github.context.repo.owner,
-                repo: repository,
-                issue_number: issue.number,
-                assignees
-              });
-              await octokit.issues.removeLabel({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                issue_number: issue.number,
-                name: "needs-assignment"
-              });
-            }
-          }
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUBB_TOKEN }}
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Create New Repository
+        run: |
+          repo_name="my-new-repo-${{ github.event.inputs.message }}"
+          description="This is my new repository."
+          curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
+               -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
+               "https://api.github.com/user/repos/im-sandbox-suryaraghava80"
+        env:
+          INPUT_NAME: ${{ steps.input_step.outputs.name }}               
+
+      - name: Clone New Repository
+        run: |
+          git clone "https://github.com/im-sandbox-suryaraghava80/my-new-repo-${{ github.event.inputs.message }}.git"
+          cd "my-new-repo-${{ github.event.inputs.message }}"
+
+      - name: Loop through files in folder
+        run: |
+          for file in ./docs/*.docx
+          do
+            title=$(basename "$file")
+            body=$(pandoc "$file")
+            json=$(echo '{}' | jq --arg title "$title" --arg body "$body" '.title=$title | .body=$body')
+            curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
+                 -H "Content-Type: application/json" \
+                 -d "$json" \
+                 "https://api.github.com/repos/im-sandbox-suryaraghava80/my-new-repo-${{ github.event.inputs.message }}/issues"
+          done
+        shell: bash
