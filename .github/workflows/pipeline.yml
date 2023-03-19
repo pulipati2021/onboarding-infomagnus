@@ -24,7 +24,7 @@ jobs:
           description="This is my new repository."
           curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
                -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
-               "https://api.github.com/user/repos/im-sandbox-suryaraghava80"
+               "https://api.github.com/user/repos"
         env:
           INPUT_NAME: ${{ steps.input_step.outputs.name }}               
 
