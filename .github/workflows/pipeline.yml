@@ -18,13 +18,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc
           
-      - name: Create Repository
+      - name: Create repository for new user
         uses: actions/github-script@v4
         with:
-          token: ${{ secrets.GITHUBB_TOKEN }}
-          name: my-new-repo-${{ github.event.inputs.message }}
-          description: This is my new repository.
-          org: im-sandbox-suryaraghava80
+          github-token: ${{ secrets.GITHUBB_TOKEN }}
+          script: |
+           const repoName = 'my-new-repo-${{ env.INPUT_NAME }}'
+           const response = await github.repos.createForAuthenticatedUser({ name: repoName })
+           console.log(response.data.html_url)
+           core.setOutput('repo_url', response.data.html_url)
+        env:
+          INPUT_NAME: ${{ steps.input_step.outputs.name }}            
           
 
       - name: Clone New Repository
