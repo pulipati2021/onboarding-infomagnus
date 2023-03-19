@@ -17,16 +17,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc
-
-      - name: Create New Repository
-        run: |
-          repo_name="my-new-repo-${{ github.event.inputs.message }}"
-          description="This is my new repository."
-          curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
-               -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
-               "https://api.github.com/user/repos"
-        env:
-          INPUT_NAME: ${{ steps.input_step.outputs.name }}               
+          
+      - name: Create Repository
+        uses: actions/github-script@v4
+        with:
+          token: ${{ secrets.GITHUBB_TOKEN }}
+          name: my-new-repo-${{ github.event.inputs.message }}
+          description: This is my new repository.
+          org: im-sandbox-suryaraghava80
+          
 
       - name: Clone New Repository
         run: |
