@@ -1,0 +1,18 @@
+name: Onboarding workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Enter a message to print'
+        required: true    
+jobs:
+  dynamic_repo:
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2     
+
+      - name: Install Dependencies
+        run:  python Read.py
+
