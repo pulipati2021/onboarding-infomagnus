@@ -1,19 +1,16 @@
-name: Onboarding workflow
+name: Onboarding workflow -Read new onboarding Details
 
 on:
   workflow_dispatch:
-    inputs:
-      message:
-        description: 'Enter a message to print'
-        required: true    
+ 
 jobs:
-  dynamic_repo:
+  read_spreadsheet:
     runs-on: ubuntu-latest  
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2     
 
-      - name: Install Dependencies
+      - name: Install Dependencies and running Python script
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python Read.py
