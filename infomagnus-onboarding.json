@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "infomagnus-onboarding",
+  "private_key_id": "1e1393c536a85ad8c1738ee661ee85281885f5f2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNCpOYWivJJqAY\nYFE7v+KZ+Kno1a8A9BcMQq8G8cgVtNXwOhPI6g3GltbWnLBIE+gTUc7+k1FaaR5D\niRhonPSNHNhmd/Dd7H5RY0P4yg5GfQ5P8GrDdT2xR81vB4ldiA2N5kaFerUacFcp\n6GPeSUvtls1rvKRryR31L5HzAb7paD2A7zL5UMqX/HXWSwhuhNfKhULQFOxyfFH9\nRoiCZq3oRiHtEqsnFMbKJYqpRdEhEaiW7wQTozzAVoxCZTMVOMBzjXACQTrreX9e\nyQKUbXtGioCGQ8xhTSeUGMjengRc7GL4aW6NCl14vZvQ3l0GsAmDJAe5ov78rRSw\nIZ8CHwKZAgMBAAECggEAFAwpb687UjzKUO/T6XdiuMK5HCiOZpW3Di4T7mYj9clb\nVJRdHFsUEztq0It76eQ2X/My/a2aOfCGsrw8DHhyKbztBKHMBWrK0/rUacYZvLcb\n9+FuEuPK7yMx2R3/xosXpizibskXXXkn8JNF9nUsrRN+TL8iRV6h5PfseXnNeIUZ\nZ58PFhxWk7BcVUnIpaXDHBzeYVIxbBJ8+DZfXcLnlvMfuLxqGjuUtxLnFmruzOhl\n+DV2m9hw4SB0ucsbqsv+OsMFndXhXlmJ9JgNfF1D2pnZVjc9A7Kyi6pfLyzrlXcW\nwMFu7C4vP5XosmgblDIkjXRn7ye/D5+4SBymIo8DoQKBgQD66v75EbVsx5Xo+yFc\nMZB7qwn+49FR50u5vEFQWTq2YoaeSCcflAfGD3arnOF0vEqivs6Ops6oFsRytYXA\nANlTm3d34SEw0/YAp/aL2Fw137VzCLRRjz7bKgiyTKfY/6ywBcEVmEKG2U7wX26q\nM/+lrMvGmzajWzWpXcftripNcQKBgQDRMbYRfKOy6PGARn+FfN7qYC8bmqjzg+6k\nl01ebduUhzUx44nwmy8A9ndKyP4qewCobt3vwS+ucD8n+QxqqeAUDSlXNcAT1LLB\nawYJxRi0ECOcLNNCK/LSb/+75efgVvWj1RiQgR3MEJQ5Eaj9Xt7S5h4HgZNzsl/x\nAau7xFqTqQKBgQDcPisCCpY53lJqhww4NVVCB9alQej4wFIKvQCDe176ui65flHA\n+Rl9sxMR/Yk0AxZsFZmPQ0F/70QN/+FfsB8SsRLDSfvtNQ/ocYYKKCaAL1XAnDJS\nqK6ehx3NC1YFNh6o/tQFlXlHjjUo7ktf4HaUQME5GgJyjtviRuv3Z3nAMQKBgFds\n/BcwzMUPfyZJ0C98cTjoO6fAqg0jPQ/CP85QAS2AmCWiX1qTsEApwM8bUsV0JGE/\n/DafuQqg1HQjLCJDnmci3P0adIyVHqOg06Qvn9RYzlkNjrif31o8/laLja1/CieO\n/jYeD9LhtuBm1gYVqO/gxfoDGBmJGXmCZkARnn0JAoGBAPVZ/b4uENgmISQf9r0w\njN0KPNP8HvOgbb75CcWyBwE+TeBUsLxv8b1vQRn9y8eCdX3ursSj9cN37CQyZxT3\nbKoDhuNfAmTcLxQe3az2cHxsxVNDd2wHem8T12W+tQoIxIgp1UZMXD3nlKPEjn89\nvUkWPh9TG4QJqaphWtPU+6aH\n-----END PRIVATE KEY-----\n",
+  "client_email": "useronboarding@infomagnus-onboarding.iam.gserviceaccount.com",
+  "client_id": "100705135145961256338",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/useronboarding%40infomagnus-onboarding.iam.gserviceaccount.com"
+}
