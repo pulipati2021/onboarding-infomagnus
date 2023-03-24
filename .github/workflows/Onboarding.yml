@@ -1,8 +1,6 @@
-name: Onboarding workflow -Read new onboarding Details
+name: Onboarding-workflow
 
-on:
-  workflow_dispatch:
- 
+on: [push]
 jobs:
   read_spreadsheet:
     runs-on: ubuntu-latest  
