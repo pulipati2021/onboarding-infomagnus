@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
 
-SERVICE_ACCOUNT_FILE = 'sales_keys.json'
+SERVICE_ACCOUNT_FILE = 'infomagnus-onboarding.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 creds = None
 creds = service_account.Credentials.from_service_account_file(
@@ -14,7 +14,7 @@ creds = service_account.Credentials.from_service_account_file(
 
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1gaMRyTDBAe0jIl0GGZDClaxIklqLMTmTcSV1f6x1mdA'
+SAMPLE_SPREADSHEET_ID = '1q6rW7kFGXxivDI2YCO39g308cMfykNOiqOqhx7r4q48'
  
 
 
@@ -25,7 +25,7 @@ sheet = service.spreadsheets()
 #result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range="Sales!A1:G2").execute()
 #rowcount = sheet.values().get(SAMPLE_SPREADSHEET_ID, range="Sales!A1:G2").execute().getValues().size()
 #values = result.get('values', [])
-range = 'Sales!C:C'
+range = 'users!B:C'
 
 rows = service.spreadsheets().values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=range).execute().get('values', [])
 last_row = rows[-1] if rows else None
