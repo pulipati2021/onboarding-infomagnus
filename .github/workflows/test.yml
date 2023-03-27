@@ -12,7 +12,7 @@ jobs:
         with:
           name: User Data output
           path: userdata.txt
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+         
           
       - name: Read userdata file
         run: cat  userdata.txt
