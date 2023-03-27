@@ -5,7 +5,7 @@ on: [push]
 jobs:
   my-other-job:
     runs-on: ubuntu-latest
-    needs: read-spreadsheet 
+    needs: Onboarding-workflow
     steps:
       - name: Download artifact and read
         uses: actions/download-artifact@v2
@@ -14,5 +14,5 @@ jobs:
          
       - name: Set variable
         run: |
-          VAR=$(cat user_data.txt)
-          echo "The variable value is $VAR"
+              VAR=${{ needs.Onboarding-workflow.outputs.my_variable }}
+              echo "The variable value is $VAR"
