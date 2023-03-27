@@ -2,7 +2,7 @@ name: Onboarding-workflow
 
 on:  workflow_dispatch 
 jobs:
-  read_spreadsheet:
+  read-spreadsheet:
     runs-on: ubuntu-latest  
     outputs:
      my_variable: $VAR
