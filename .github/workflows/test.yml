@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
+      - name: Download artifact and read
         uses: actions/download-artifact@v2
         with:
           workflow: 'Onboarding.yml'
           inputs: '{"name": "userdata.txt", "path": " /home/runner/work/onboarding-infomagnus/onboarding-infomagnus"}'
-           
+          run: cat /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/userdata.txt
           
          
           
