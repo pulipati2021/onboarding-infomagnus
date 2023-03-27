@@ -4,6 +4,8 @@ on:  workflow_dispatch
 jobs:
   read_spreadsheet:
     runs-on: ubuntu-latest  
+    outputs:
+     my_variable: "My variable value"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2     
@@ -13,8 +15,10 @@ jobs:
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python Read.py > user_data.txt 
-              pwd 
-              ls -la
+              VAR=$(cat user_data.txt)
+              echo "The variable value is $VAR"
+             # echo "::set-output name=my_variable::My variable value"
+            
               
       - name: Upload artifact
         uses: actions/upload-artifact@v2
