@@ -12,4 +12,4 @@ jobs:
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python Read.py
-
+              echo "The output of the Python script was: ${{ steps.run-python.outputs.stdout }}"
