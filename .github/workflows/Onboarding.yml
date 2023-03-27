@@ -5,7 +5,7 @@ jobs:
   read_spreadsheet:
     runs-on: ubuntu-latest  
     outputs:
-     my_variable: "My variable value"
+     my_variable: $VAR
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2     
