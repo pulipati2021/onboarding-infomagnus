@@ -11,8 +11,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           workflow: 'Onboarding.yml'
-          name: User Data output
-          path: /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/userdata.txt
+          inputs: '{"name": "userdata.txt", "path": " /home/runner/work/onboarding-infomagnus/onboarding-infomagnus"}'
+           
+          
          
           
       - name: Read userdata file
