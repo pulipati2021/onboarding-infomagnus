@@ -1,6 +1,6 @@
 name: Test read artifact file
 
-on: [push]
+on:  workflow_dispatch 
 
 jobs:
   my-other-job:
