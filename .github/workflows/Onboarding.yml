@@ -12,10 +12,14 @@ jobs:
       - name: Install Dependencies and running Python script
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-              python Read.py > userdata.txt
+              python Read.py > userdata.txt 
+              pwd 
+              ls -la
               
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: User Data output
           path: userdata.txt
+           
+             
