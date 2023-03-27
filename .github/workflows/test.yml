@@ -12,7 +12,10 @@ jobs:
         with:
           workflow: 'Onboarding.yml'
           inputs: '{"name": "userdata.txt", "path": " /home/runner/work/onboarding-infomagnus/onboarding-infomagnus"}'
-          run: cat /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/userdata.txt
+          run: | 
+            cd /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/
+            ls -la 
+            cat userdata.txt 
           
          
           
