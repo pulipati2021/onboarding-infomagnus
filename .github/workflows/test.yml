@@ -10,14 +10,9 @@ jobs:
       - name: Download artifact and read
         uses: actions/download-artifact@v2
         with:
-          workflow: 'Onboarding.yml'
-          inputs: '{"userdata.txt", "/home/runner/work/onboarding-infomagnus/onboarding-infomagnus"}'
-          run: | 
-            cd /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/
-            ls -la 
-            cat userdata.txt 
-          
+         name: user-artifact
          
-          
-      #- name: Read userdata file
-      #  run: cat  /home/runner/work/onboarding-infomagnus/onboarding-infomagnus/userdata.txt
+      - name: Set variable
+        run: |
+          VAR=$(cat user_data.txt)
+          echo "The variable value is $VAR"
