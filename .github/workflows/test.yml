@@ -11,8 +11,5 @@ jobs:
         uses: actions/download-artifact@v2
         with:
          name: user-artifact
-         
-      - name: Set variable
-        run: |
-              VAR=${{ needs.Onboarding-workflow.outputs.my_variable }}
-              echo "The variable value is $VAR"
+         path: user-artifact.zip
+    
