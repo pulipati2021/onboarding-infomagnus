@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: user-artifact
-          path: myartifacts/user_data.txt
+          path: user_data.txt
           if-no-files-found: error
           retention-days: 90
           
