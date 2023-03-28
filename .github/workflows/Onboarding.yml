@@ -20,7 +20,7 @@ jobs:
               echo "::set-output name=my_variable::$VAR"
               #echo "::set-output name={name}::{value}"
       - name: Save state
-        uses: actions/states@v2
+        uses: actions/states@v1
         id: save_state
         with:
          state: ${{ steps.set_state.outputs.my_variable }}
