@@ -7,11 +7,13 @@ jobs:
     outputs:
       output1: ${{ steps.setvariables.outputs.username }}
     steps:
+       
       - name: Checkout Code
         uses: actions/checkout@v2     
       - name: Set up Python
         uses: actions/setup-python@v2
       - name: set variables
+        id: setvariables   
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python Read.py > user_data.txt 
@@ -19,9 +21,13 @@ jobs:
               echo "The variable value is $VAR"
                echo "::set-output name=username::$VAR"
                #sleep 30
-        id: setvariables   
+  create-repo:
+    runs-on: ubuntu-latest  
+    needs: read-spreadsheet
+    steps:
+      - name: Test
+        run: echo "test"
         
- 
  
             
        
