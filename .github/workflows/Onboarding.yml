@@ -27,8 +27,7 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.read-spreadsheet.outputs.output1}}
-      - name: Test
-        run: echo "$OUTPUT1"
+          run: echo "$OUTPUT1"
         
  
             
