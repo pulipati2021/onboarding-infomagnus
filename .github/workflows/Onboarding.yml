@@ -16,6 +16,7 @@ jobs:
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
                echo "::set-output name=username::$VAR"
+               echo ${{ needs.setvariables.outputs.username }}
               #sleep 30
       - name: Test 
         needs: setvariables
