@@ -18,12 +18,17 @@ jobs:
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
               echo "::set-output name=my_variable::$VAR"
+              mkdir myartifacts
             
               
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: user-artifact
-          path: user_data.txt
+          path: myartifacts/**
+          retention-days: 90
+          if-no-file-found: error
+          
+          
            
              
