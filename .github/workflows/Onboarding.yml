@@ -5,7 +5,7 @@ jobs:
   read-spreadsheet:
     runs-on: ubuntu-latest  
     outputs:
-      output1: ${{ steps.setvariables.outputs.username }}
+      uname: ${{ steps.setvariables.outputs.username }}
     steps:
        
       - name: Checkout Code
@@ -26,7 +26,7 @@ jobs:
     needs: read-spreadsheet
     steps:
        - name: Checkout Code
-         run: echo ${{needs.read-spreadsheet.outputs.output1}}
+         run: echo ${{needs.read-spreadsheet.outputs.uname}}
         
  
             
