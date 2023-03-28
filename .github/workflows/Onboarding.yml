@@ -46,6 +46,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3.raw" \
           -O -L https://github.com/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.git
+          unzip ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.zip
           cd "ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}"
        - name: Loop through files in folder
          run: |
