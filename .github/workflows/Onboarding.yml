@@ -34,7 +34,7 @@ jobs:
                -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
                "https://api.github.com/orgs/im-accreditation/repos"
         env:
-          INPUT_NAME: ${{ steps.input_step.outputs.name }}               
+          INPUT_NAME: ${{ steps.setvariables.outputs.username }}               
 
       - name: Clone New Repository
         run: |
