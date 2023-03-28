@@ -38,7 +38,7 @@ jobs:
             repo_name="ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}"
             description="This is my new repository."
              curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
-               -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
+               -d "{\"name\":\"$repo_name\",\"description\":\"$description\","private":true}" \
                "https://api.github.com/orgs/im-accreditation/repos"
                
        - name: Clone New Repository
