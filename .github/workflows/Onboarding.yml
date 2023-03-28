@@ -38,15 +38,12 @@ jobs:
             repo_name="ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}"
             description="This is my new repository."
              curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
-               -d "{\"name\":\"$repo_name\",\"description\":\"$description\",\"private\":\"true\"}" \
+               -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
                "https://api.github.com/orgs/im-accreditation/repos"
                
        - name: Clone New Repository
          run: |
-          curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3.raw" \
-          -O -L https://github.com/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.git
-          unzip ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.zip
+          git clone "https://github.com/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.git"
           cd "ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}"
        - name: Loop through files in folder
          run: |
@@ -61,18 +58,3 @@ jobs:
                  "https://api.github.com/repos/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}/issues"
           done
          shell: bash
-
-            
-       
-    
-          
-             
-
- 
-       
- 
-            
-       
-    
-          
-             
