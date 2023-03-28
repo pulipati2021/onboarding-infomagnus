@@ -18,5 +18,38 @@ jobs:
               #echo "::set-output name=MY_VARIABLE::$VAR"
        
           
-           
+                  
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Create New Repository
+        run: |
+          repo_name="ps-accreditation-$VAR"
+          description="This is my new repository."
+          curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
+               -d "{\"name\":\"$repo_name\",\"description\":\"$description\"}" \
+               "https://api.github.com/orgs/im-accreditation/repos"
+        env:
+          INPUT_NAME: ${{ steps.input_step.outputs.name }}               
+
+      - name: Clone New Repository
+        run: |
+          git clone "https://github.com/im-accreditation/ps-accreditation-$VAR.git"
+          cd "ps-accreditation-$VAR"
+      - name: Loop through files in folder
+        run: |
+          for file in ./docs/*.docx
+          do
+            title=$(basename "$file")
+            body=$(pandoc "$file")
+            json=$(echo '{}' | jq --arg title "$title" --arg body "$body" '.title=$title | .body=$body')
+            curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
+                 -H "Content-Type: application/json" \
+                 -d "$json" \
+                 "https://api.github.com/repos/im-accreditation/ps-accreditation-${{ github.event.inputs.username }}/issues"
+          done
+        shell: bash
+  
+          
              
