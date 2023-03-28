@@ -15,4 +15,8 @@ jobs:
               python Read.py > user_data.txt 
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
-              echo "::set-output name=MY_VARIABLE::$VAR"
+              #echo "::set-output name=MY_VARIABLE::$VAR"
+       
+          
+           
+             
