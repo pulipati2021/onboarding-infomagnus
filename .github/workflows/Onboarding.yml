@@ -16,8 +16,7 @@ jobs:
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
                echo "::set-output name=username::$VAR"
-               #echo ${{ needs.setvariables.outputs.username }}
-              #sleep 30
+               #sleep 30
               
   create-repos:
      runs-on: ubuntu-latest
@@ -26,7 +25,7 @@ jobs:
       - name: Test 
         run : | 
               echo "The variable value is "
-              echo ${{ needs.setvariables.outputs.username }}
+              echo ${{ needs.read-spreadsheet.outputs.username }}
             
        
     
