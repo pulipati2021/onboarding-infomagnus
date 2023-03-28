@@ -15,9 +15,10 @@ jobs:
               python Read.py > user_data.txt 
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
-              echo "::set-output name=username::$VAR" | tee /dev/null
+              echo "::set-output name=username::$VAR"
+              echo "asdas"  
         id: setvariables      
-        outputs:
+         outputs: 
           username: ${{ steps.setvariables.outputs.username }}
                #sleep 30
               
