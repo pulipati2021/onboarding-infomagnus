@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies,run scripts and set variables
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-              python Read.py > user_data.txt 
+              python Read.py > myartifacts/user_data.txt 
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
               echo "::set-output name=my_variable::$VAR"
@@ -26,8 +26,9 @@ jobs:
         with:
           name: user-artifact
           path: myartifacts/**
-          retention-days: 90
           if-no-file-found: error
+          retention-days: 90
+          
           
           
            
