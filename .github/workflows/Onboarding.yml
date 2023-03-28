@@ -43,7 +43,9 @@ jobs:
                
        - name: Clone New Repository
          run: |
-          git clone "https://github.com/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.git"
+          curl -H "Authorization: token ${{ secrets.GITHUBB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3.raw" \
+          -O -L https://github.com/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}.git
           cd "ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}"
        - name: Loop through files in folder
          run: |
