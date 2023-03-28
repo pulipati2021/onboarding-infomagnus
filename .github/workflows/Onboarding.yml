@@ -15,11 +15,14 @@ jobs:
               python Read.py > user_data.txt 
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
-              #echo "::set-output name=MY_VARIABLE::$VAR"
-              sleep 30
+               echo "::set-output name=username::$VAR"
+              #sleep 30
       - name: Test 
         needs: setvariables
-        run :   echo "The variable value is $VAR"
+        run : | 
+              echo "The variable value is "
+              echo ${{ needs.setvariables.outputs.username }}
+            
        
     
           
