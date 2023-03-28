@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2     
       - name: Set up Python
         uses: actions/setup-python@v2
-      - name: Install Dependencies,run scripts and set variables
+      - name: setvariables
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python Read.py > user_data.txt 
@@ -17,7 +17,8 @@ jobs:
               echo "The variable value is $VAR"
               #echo "::set-output name=MY_VARIABLE::$VAR"
               sleep 30
-      - name: test 
+      - name: Test 
+        needs: setvariables
         run :   echo "The variable value is $VAR"
        
     
