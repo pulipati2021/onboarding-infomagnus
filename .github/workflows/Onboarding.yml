@@ -16,7 +16,7 @@ jobs:
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
               #echo "::set-output name=MY_VARIABLE::$VAR"
-       
+              sleep 30
           
                   
       - name: Install Dependencies
