@@ -25,7 +25,8 @@ sheet = service.spreadsheets()
 #result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range="Sales!A1:G2").execute()
 #rowcount = sheet.values().get(SAMPLE_SPREADSHEET_ID, range="Sales!A1:G2").execute().getValues().size()
 #values = result.get('values', [])
-range = 'users!B:B'
+range = 'users!B:D'
+
 
 rows = service.spreadsheets().values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=range).execute().get('values', [])
 last_row = rows[-1] if rows else None
