@@ -32,6 +32,6 @@ rows = service.spreadsheets().values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, 
 last_row = rows[-1] if rows else None
 last_row_id = len(rows)
 #print(last_row_id, last_row)
-print(last_row[0])
+print(last_row)
  
  
