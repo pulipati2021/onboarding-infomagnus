@@ -40,8 +40,8 @@ for i,row in enumerate(rows):
           email_data[email]= row
 #-------------------------------- 
 
-file=open("completed.txt", "r")  
-fileRead = open("completed.txt","a")  
+file=open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt", "r")  
+fileRead = open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt","a")  
 content = file.read()    
 for emailkey,emailvalue in enumerate(email_data):
    #print(emailvalue)
