@@ -16,7 +16,7 @@ jobs:
         id: setvariables   
         run: |
               pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-              python verify_read.py.py > user_data.txt  
+              python verify_read.py > user_data.txt  
               cat user_data.txt
               VAR=$(cat user_data.txt)
               echo "The variable value is $VAR"
