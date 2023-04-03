@@ -54,7 +54,7 @@ for emailkey,emailvalue in enumerate(email_data):
    # print("The string does not exist in the file."+emailvalue)
     fileRead.write(emailvalue+"\n") 
    # print(email_data[emailvalue])
-     outputdata = (email_data[emailvalue])
+    outputdata = (email_data[emailvalue])
     outputdata = ', '.join(outputdata)
     print(outputdata)
     break
