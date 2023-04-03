@@ -21,7 +21,7 @@ jobs:
               my_string=$(cat user_data.txt)
               IFS=','
               read -ra my_array <<< "$my_string"
-              echo "::set-output name=username::${my_array[0]}"
+              echo "::set-output name=username::$my_array[0]"
                #sleep 30
   create-repo:
     runs-on: ubuntu-latest     
