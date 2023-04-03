@@ -56,7 +56,7 @@ for emailkey,emailvalue in enumerate(email_data):
    # print(email_data[emailvalue])
     outputdata = (email_data[emailvalue])
     outputdata = ', '.join(outputdata)
-    outputdata = '"'+outputdata+'"'
+  #  outputdata = '"'+outputdata+'"'
     print(outputdata)
     break
 
