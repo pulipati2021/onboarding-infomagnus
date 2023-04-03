@@ -59,7 +59,7 @@ jobs:
                  -d "$json" \
                  "https://api.github.com/repos/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}/issues"
               done
-             shell: bash   
+         #    shell: bash   
        - name: Append content to file
          run: echo "New line of text" >> completed.txt
        - name: Commit changes
