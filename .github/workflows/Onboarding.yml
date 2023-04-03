@@ -58,5 +58,18 @@ jobs:
                  -H "Content-Type: application/json" \
                  -d "$json" \
                  "https://api.github.com/repos/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}/issues"
+       - name: Append content to file
+         run: echo "New line of text" >> completed.txt
+       - name: Commit changes
+         run: |
+          git config --local user.email "naresh.pulipati@infomagnus.com"
+          git config --local user.name "Naresh"
+          git commit -a -m "Append content to completed.txt"
+       - name: Push changes
+         uses: ad-m/github-push-action@v0.6.0
+          with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+                 
           done
+   
          shell: bash
