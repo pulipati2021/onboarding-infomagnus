@@ -61,7 +61,7 @@ jobs:
               done
          #    shell: bash   
        - name: Append content to file
-         run: echo "New line of text" >> completed.txt
+         run: echo "New line of text" >> /im-sandbox-suryaraghava80/onboarding-infomagnus/completed.txt
        - name: Commit changes
          run: |
           git config --local user.email "surya.raghava@infomagnus.com"
