@@ -64,13 +64,13 @@ jobs:
          run: echo "New line of text" >> completed.txt
        - name: Commit changes
          run: |
-          git config --local user.email "naresh.pulipati@infomagnus.com"
-          git config --local user.name "Naresh"
+          git config --local user.email "surya.raghava@infomagnus.com"
+          git config --local user.name "suryaraghava80"
           git commit -a -m "Append content to completed.txt"
        - name: Push changes
          uses: ad-m/github-push-action@v0.6.0
          with:
-           github_token: ${{ secrets.FILE_UPDATER }}
+           github_token: ${{ secrets.GITHUBB_TOKEN }}
            
         
    
