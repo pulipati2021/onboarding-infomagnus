@@ -40,9 +40,9 @@ for i,row in enumerate(rows):
           email_data[email]= row
 #-------------------------------- 
 #/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/
-file=open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt", "a+")  
+File_object=open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt", "a+")  
 #fileRead = open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt","a")  
-content = file.read()    
+content = File_object.read()    
 for emailkey,emailvalue in enumerate(email_data):
    #print(emailvalue)
    #print(email_data[emailvalue])
@@ -52,7 +52,7 @@ for emailkey,emailvalue in enumerate(email_data):
   if emailvalue not in content:
     
    # print("The string does not exist in the file."+emailvalue)
-    file.write(emailvalue+"\n") 
+    File_object.writelines(emailvalue+"\n") 
    # print(email_data[emailvalue])
     outputdata = (email_data[emailvalue])
     outputdata = ', '.join(outputdata)
