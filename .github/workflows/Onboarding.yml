@@ -65,15 +65,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Append Text
-        run: echo "New Text" >> completed.txt
       - name: Commit Changes
         run: |
+          git clone "https://suryaraghava80:${{ secrets.GITHUBB_TOKEN }}@github.com/im-sandbox-suryaraghava80/onboarding-infomagnus.git"
+          cd onboarding-infomagnus
+          echo "New Text" >> completed.txt
           git status
           git config --global user.email "surya.raghava@infomagnus.com"
           git config --global user.name "suryaraghava80"
           git commit -a -m "Append new text to file"
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUBB_TOKEN }}
+          git push origin main
