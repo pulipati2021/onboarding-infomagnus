@@ -59,8 +59,7 @@ for emailkey,emailvalue in enumerate(email_data):
   #  outputdata = '"'+outputdata+'"'
     print(outputdata)
     break
-
-file.close()  
+  
            
               
 
