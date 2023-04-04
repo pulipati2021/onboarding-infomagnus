@@ -58,20 +58,22 @@ jobs:
                  -H "Content-Type: application/json" \
                  -d "$json" \
                  "https://api.github.com/repos/im-accreditation/ps-accreditation-${{needs.read-spreadsheet.outputs.uname}}/issues"
-              done
-         #    shell: bash   
-       - name: Append content to file
-         run: echo "New line of text" >> /im-sandbox-suryaraghava80/onboarding-infomagnus/completed.txt
-       - name: Commit changes
+          done
+         shell: bash
+  append-text:
+    runs-on: ubuntu-latest
+    needs: read-spreadsheet
+    steps:
+       - name: Checkout Repository
+         uses: actions/checkout@v2
+       - name: Append Text
+         run: echo "New Text" >> completed.txt
+       - name: Commit Changes
          run: |
-          git config --local user.email "surya.raghava@infomagnus.com"
-          git config --local user.name "suryaraghava80"
-          git commit -a -m "Append content to completed.txt"
-       - name: Push changes
-         uses: ad-m/github-push-action@v0.6.0
+              git config --global user.email "surya.raghava@infomagnus.com"
+              git config --global user.name "suryaraghava80"
+              git commit -a -m "Append new text to file"
+       - name: Push Changes
+         uses: ad-m/github-push-action@master
          with:
-           github_token: ${{ secrets.FILE_UPDATER }}
-           
-        
-   
-        
+              github_token: ${{ secrets.GITHUBB_TOKEN }}
