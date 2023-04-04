@@ -61,7 +61,7 @@ for emailkey,emailvalue in enumerate(email_data):
     break
 
 file.close()  
-fileRead.close()             
+           
               
 
 
