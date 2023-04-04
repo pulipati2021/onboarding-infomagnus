@@ -69,6 +69,7 @@ jobs:
         run: echo "New Text" >> completed.txt
       - name: Commit Changes
         run: |
+          git status
           git config --global user.email "surya.raghava@infomagnus.com"
           git config --global user.name "suryaraghava80"
           git commit -a -m "Append new text to file"
