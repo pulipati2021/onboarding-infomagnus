@@ -74,6 +74,6 @@ jobs:
           git config --global user.name "suryaraghava80"
           git commit -a -m "Append new text to file"
       - name: Push Changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@main
         with:
           github_token: ${{ secrets.GITHUBB_TOKEN }}
