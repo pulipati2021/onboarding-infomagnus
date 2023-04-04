@@ -15,13 +15,13 @@ jobs:
       - name: set variables
         id: setvariables   
         run: |
-              pip install --upgrad google-api-python-client google-auth-httplib2 google-auth-oauthlib
+              pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
               python verify_read.py > user_data.txt  
               cat user_data.txt
               my_string=$(cat user_data.txt)
-              #IFS=','
+              IFS=','
               read -ra my_array <<< "$my_string"
               echo "::set-output name=username::${my_array[0]}"
-              
+              echo "${my_array[0]}"
                #sleep 30
  
