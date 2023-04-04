@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       uname: ${{ steps.setvariables.outputs.username }}
+      role: ${{ steps.setvariables.outputs.userrole }}
+      uemail: ${{ steps.setvariables.outputs.useremail }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -21,6 +23,8 @@ jobs:
           IFS=','
           read -ra my_array <<< "$my_string"
           echo "::set-output name=username::${my_array[0]}"
+          echo "::set-output name=userrole::${my_array[1]}"
+          echo "::set-output name=useremail::${my_array[2]}"
            #sleep 30
   create-repo:
     runs-on: ubuntu-latest
@@ -69,7 +73,7 @@ jobs:
         run: |
           git clone "https://suryaraghava80:${{ secrets.GITHUBB_TOKEN }}@github.com/im-sandbox-suryaraghava80/onboarding-infomagnus.git"
           cd onboarding-infomagnus
-          echo ${{needs.read-spreadsheet.outputs.uname}} >> completed.txt
+          echo ${{needs.read-spreadsheet.outputs.uemail}} >> completed.txt
           git status
           git config --global user.email "surya.raghava@infomagnus.com"
           git config --global user.name "suryaraghava80"
