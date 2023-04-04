@@ -42,7 +42,7 @@ for i,row in enumerate(rows):
 #/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/
 File_object_read=open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt", "r")  
 #fileRead = open("/home/runner/work/onboarding-infomagnus/onboarding-infomagnus/completed.txt","a")  
-content = File_object.read()
+content = File_object_read.read()
 for emailkey,emailvalue in enumerate(email_data):
    #print(emailvalue)
    #print(email_data[emailvalue])
